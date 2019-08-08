@@ -9,18 +9,15 @@
 var Word = require("./Word");
 var inquirer = require('inquirer');
 
-//Variables
+//Variable to check if user enters a letter, else they'll need to try again.
 var letterArray = "abcdefghijklmnopqrstuvwxyz";
-
-// Create a new VWord object
-//var word = new Word();
 
 //Guess these 80s movies
 var wordList = [
-  "Ghostbusters", "Gremlins", "Aliens", "Heathers", "Poltergeist", "Platoon", "Caddyshack", "The Breakfast Club", "Ferris Bueller's Day Off", "E.T. the Extra-terrestrial", "Die Hard", "Fast Times at Ridgemont High", "The Princess Bride", "Pretty in Pink", "Trading Places", "Aliens", "Poltergeist", "Coming to America"
+  "ghostbusters", "gremlins", "aliens", "heathers", "poltergeist", "platoon", "caddyshack", "the breakfast club", "die hard", "fast times at ridgemont high", "the princess bride", "pretty in pink", "trading places", "aliens", "poltergeist", "coming to america"
 ];
 
-//Pick random index of word from list
+//Pick random index of word from list to get the us the word to guess
 var wordIndex  = Math.floor(Math.random() * wordList.length);
 var wordInPlay = wordList[wordIndex];
 console.log(wordInPlay);
@@ -33,13 +30,12 @@ var requireNewWord = false;
 var incorrectLetters = [];
 //array for the correct letters guessed
 var correctLetters = [];
-
 //Guesses left variable for counter
 var guessesLeft = 10;
 
 function playGame() {
   
-  //Creates a new ramdom word when true
+  //Creates a new ramdom word
   if(requireNewWord){
       wordIndex = Math.floor(Math.random() * wordList.length);
       wordInPlay = wordList[wordIndex];
@@ -48,24 +44,27 @@ function playGame() {
   }
 
   var wordComplete = [];
-  showResults.objArray.forEach(completeCheck);
+  showResults.wordArray.forEach(completeCheck);
 
   if (wordComplete.includes(false)) 
     {
         inquirer.prompt ([
           {
             type: "input",
-            message: "Select letter from A to Z",
-            name: "userInput"
+            message: "Select a letter.",
+            name: "userGuess"
             }
           ])
           .then(function(input) {
-            if (!letterArray.includes(input.userInput) || input.userInput.length >1) {
+            //converts user input to lowercase, if it's not already
+            var userGuessLC= input.userGuess.toLowerCase();
+            console.log(userGuessLC);
+            if (!letterArray.includes(userGuessLC) || userGuessLC.length >1) {
               console.log("\nTry again.\n");
               playGame();
             }
             else {
-              if(incorrectLetters.includes(input.userInput) || correctLetters.includes(input.userInput) || input.userInput === "")
+              if(incorrectLetters.includes(input.userGuess) || correctLetters.includes(input.userGuess) || input.userGuess === "")
               {
                 console.log("\nAlready guessed.\n");
                 playGame();           
@@ -73,19 +72,19 @@ function playGame() {
               else {
                 var wordCheckArray = [];
 
-                showResults.userGuess(input.userInput);
+                showResults.userGuess(input.userGuess);
 
-                showResults.objArray.forEach(wordCheck);
+                showResults.wordArray.forEach(wordCheck);
                 if (wordCheckArray.join("") === wordComplete.join("")) {
                   console.log("\nIncorrect\n");
 
-                  incorrectLetters.push(input.userInput);
+                  incorrectLetters.push(input.userGuess);
                   guessesLeft --;
                       }
                   else {
                     console.log("\nCorrect!\n");
 
-                    correctLetters.push(input.userInput);
+                    correctLetters.push(input.userGuess);
                   }
                   showResults.log();
 
@@ -96,8 +95,9 @@ function playGame() {
                   if(guessesLeft > 0) {
                     playGame();
                     }
-                  else {
+                  else  {
                     console.log("Sorry, you lost.\n");
+                    restartGame();
                       }
                   function wordCheck(key) {
                     wordCheckArray.push(key.guessed);
@@ -108,6 +108,7 @@ function playGame() {
               }
         else {
           console.log("You win!\n");
+          restartGame();
         } 
     
         function completeCheck(key) {
@@ -115,24 +116,26 @@ function playGame() {
         }
       }
 
-      function restartGame() {
+function restartGame() {
         inquirer.prompt([
           { 
             type: "list",
-            message: "What would you like to do?",
-            choices: ["Play again.","Exit"],
-            name: "restart"
+            name: "restart",
+            message: "Do you want to play again?",
+            choices: ["Yes", "No thanks."]
           }
         ])
         .then(function(input){
-          if (input.restart === "Play again."){
-            reuireNewWord = true;
-            incorrectLetters = [],
-            correctLetters = [],
-            guessesLeft = 10,
+          if (input.restart === "Yes")
+          {
+            requireNewWord = true;
+            incorrectLetters = [];
+            correctLetters = [];
+            guessesLeft = 10;
             playGame();
           }
           else {
+            console.log("Ok. Thanks for playing.")
             return;
           }
         });

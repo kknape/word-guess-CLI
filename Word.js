@@ -8,22 +8,23 @@
 var Letter = require("./Letter");
 
 function Word(answer) {
-   this.objArray = [];
-   //creates a letter variable from our letter constructor and push the letter to the object array
+   this.wordArray = [];
+   //creates a letter variable from our letter constructor and push the letter to the word array
       for (var i = 0; i < answer.length; i++){
          var letter = new Letter(answer[i]);
-         this.objArray.push(letter);
+         this.wordArray.push(letter);
          }
+      //   console.log(this.wordArray);
    this.log = function(){
-     var answerLog = "";
-     for (var i = 0; i<this.objArray.length; i++){
-        answerLog += this.objArray[i] + " ";
+     var showResults = "";
+     for (var i = 0; i<this.wordArray.length; i++){
+        showResults += this.wordArray[i] + " ";
          }
-      console.log(answerLog + "\n*******************************\n");
+      console.log(showResults + "\n*******************************\n");
        }; 
    this.userGuess = function(input){
-     for(var i=0; i<this.objArray.length; i++){
-        this.objArray[i].guess(input);
+     for(var i=0; i<this.wordArray.length; i++){
+        this.wordArray[i].guess(input);
      }
   }
 }
