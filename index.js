@@ -14,13 +14,13 @@ var letterArray = "abcdefghijklmnopqrstuvwxyz";
 
 //Guess these 80s movies
 var wordList = [
-  "ghostbusters", "gremlins", "aliens", "heathers", "poltergeist", "platoon", "caddyshack", "the breakfast club", "die hard", "fast times at ridgemont high", "the princess bride", "pretty in pink", "trading places", "aliens", "poltergeist", "coming to america"
+  "ghostbusters", "gremlins", "heathers", "poltergeist", "platoon", "caddyshack", "the breakfast club", "die hard", "fast times at ridgemont high", "the princess bride", "pretty in pink", "trading places", "aliens", "poltergeist", "coming to america"
 ];
 
 //Pick random index of word from list to get the us the word to guess
 var wordIndex  = Math.floor(Math.random() * wordList.length);
 var wordInPlay = wordList[wordIndex];
-console.log(wordInPlay);
+//console.log(wordInPlay);
 
 //Pass random word through Word constructor
 var showResults = new Word(wordInPlay);
@@ -64,7 +64,7 @@ function playGame() {
               playGame();
             }
             else {
-              if(incorrectLetters.includes(input.userGuess) || correctLetters.includes(input.userGuess) || input.userGuess === "")
+              if(incorrectLetters.includes(input.userGuess) || correctLetters.includes(input.userGuess) || input.userGuess === "  ")
               {
                 console.log("\nAlready guessed.\n");
                 playGame();           
