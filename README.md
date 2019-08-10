@@ -28,13 +28,12 @@ Goal of the game: Guess the 80s movie title within 10 tries.
   - Feedback is displayed "Correct" or "Incorrect". A space for each letter and any guessed letters are displayed. Incorrect guesses are displayed.
     - ![Correct or incorrect feedback displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_002.png)
   - User continues to key in guessed letters. Correct guesses will fill-in the spaces of the word and until the word is complete or the user has made 10 incorrect guesses.
-    - ![Correct or incorrect results are displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_003.png)
+    - ![Correct or incorrect results are displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_004.png)
   - If the user completes the word within 10 guesses, "You Win!" displays. If the user does not complete the word within 10 guesses, "You lose." message displays
-    - ![Correct or incorrect results are displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_004.png) 
-  - User is asked if they want to play again.
-    -![Correct or incorrect results are displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_005.png) 
+    - User is asked if they want to play again.
+    - ![Correct or incorrect results are displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_005.png) 
   - If user chooses Yes, then restart the game. The app chooses a new word from the word list. And user guesses letters until game is completed.
     - ![Correct or incorrect results are displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_006.png) 
   - If user chooses No, game ends.
-    -  ![Correct or incorrect results are displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_007.png) 
+    -  ![Correct or incorrect results are displayed.](https://kknape.github.io/word-guess-CLI/images/Word_Guess_CLI_009.png) 
 
