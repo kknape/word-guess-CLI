@@ -14,7 +14,7 @@ function Word(answer) {
          var letter = new Letter(answer[i]);
          this.wordArray.push(letter);
          }
-      //   console.log(this.wordArray);
+//displays results
    this.log = function(){
      var showResults = "";
      for (var i = 0; i<this.wordArray.length; i++){

@@ -51,7 +51,7 @@ function playGame() {
         inquirer.prompt ([
           {
             type: "input",
-            message: "Select a letter.",
+            message: "Guess the 80s movie. Select a letter.",
             name: "userGuess"
             }
           ])
